@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<proxool-config>
+    <proxool>
+        <alias>DBPool</alias>
+        <driver-url>jdbc:mysql://localhost:3306/hibernate</driver-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <driver-properties>
+            <property name="user" value="root"/>
+            <property name="password" value="root"/>
+        </driver-properties>
+        <maximum-connection-count>10</maximum-connection-count>
+        <minimum-connection-count>2</minimum-connection-count>
+        <maximum-connection-lifetime>10 </maximum-connection-lifetime>
+        <house-keeping-test-sql> Select CURRENT_DATE </house-keeping-test-sql>
+    </proxool>
+</proxool-config>

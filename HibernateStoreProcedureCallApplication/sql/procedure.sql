@@ -1,0 +1,11 @@
+DELIMITER $$
+
+CREATE PROCEDURE `GETEMPLOYEE`(emp_id int(20))
+BEGIN
+   SELECT * FROM EMPLOYEE WHERE EMP_ID = emp_id;
+   END $$
+
+DELIMITER ;
+
+
+CALL getemployee(1);

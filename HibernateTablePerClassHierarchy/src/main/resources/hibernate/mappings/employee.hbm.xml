@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.adarsh.hibernate.bean">
+
+    <class name="Person" table="PERSON" discriminator-value="P">
+        <id name="personId" column="PERSON_ID">
+            <generator class="native" />
+        </id>
+        <discriminator column="DISCRIMINATOR" type="string" />
+        <property name="name" />
+        <property name="dob" column="person_dob" type="date" />
+
+
+        <subclass name="Employee" extends="Person" discriminator-value="E">
+            <property name="deptName" column="emp_dept" />
+            <property name="empCity" type="string" column="emp_city" />
+        </subclass>
+    </class>
+</hibernate-mapping>

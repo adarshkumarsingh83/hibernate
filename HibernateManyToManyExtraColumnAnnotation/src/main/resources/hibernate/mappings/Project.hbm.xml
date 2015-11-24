@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.adarsh.hibernate.bean.Project" table="Project" catalog="hibernate">
+        <id name="projectId" type="java.lang.Integer">
+            <column name="Project_Id" />
+            <generator class="identity" />
+        </id>
+        <property name="projectName" type="string">
+            <column name="Project_Name" length="10" not-null="true" />
+        </property>
+        <property name="projectClient" type="string">
+            <column name="Project_Client" not-null="true" />
+        </property>
+        <set name="employeeProject" table="employee_project" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pk.Project" not-null="true" />
+            </key>
+            <one-to-many class="com.adarsh.hibernate.bean.EmployeeProject" />
+        </set>
+    </class>
+</hibernate-mapping>

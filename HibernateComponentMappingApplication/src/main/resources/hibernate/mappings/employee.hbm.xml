@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.adarsh.hibernate.bean.Employee" table="employee">
+    <id name="empId" column="Emp_Id">
+	   <generator class="assigned"/>
+	</id>   
+      <property name="empName" column="Emp_Name"/>
+       <property name="empEmail" column="Emp_Email"/>
+      <component name="address" class="com.adarsh.hibernate.bean.Address">
+          <property name="streetName" column="Street_Name"/>
+          <property name="cityName" column="City_Name"/>
+          <property name="countryName" column="Country_Name"/>
+          <property name="pinCode" column="Pin_Code"/>
+      </component>
+  </class>      
+</hibernate-mapping>
+   

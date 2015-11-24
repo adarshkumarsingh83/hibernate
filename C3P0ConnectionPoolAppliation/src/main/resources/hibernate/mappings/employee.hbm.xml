@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.adarsh.bean.Employee" table="employee">
+        <id name="empNumber" column="empNumber">
+            <generator class="assigned"/>
+        </id>
+        <property name="empFirstName" column="FirstName"/>
+        <property name="empMiddleName" column="MiddleName"/>
+        <property name="empLastName" column="LastName"/>
+        <property name="empCity" column="city"/>
+        <property name="dateOfBirth" column="dob" type="org.hibernate.type.DateType"/>
+    </class>
+</hibernate-mapping>
+   
