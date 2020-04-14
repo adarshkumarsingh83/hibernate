@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.adarsh.bean.Employee" table="employee" >
+    <id name="empNumber"  column="empNumber">
+	   <generator class="assigned" />
+	</id>   
+      <property name="empFirstName" column="FirstName" index="empId_index"/>
+       <property name="empMiddleName" column="MiddleName"/>  
+        <property name="empLastName" column="LastName"/>   
+        <property name="empCity" column="city" length="10" />
+       <property name="dateOfBirth" column="dob" type="org.hibernate.type.DateType"/>
+
+  </class>
+
+    <database-object>
+        <create>create index empId_index on employee ( empid, `city`(10) )</create>
+        <drop>drop index empId_index</drop>
+        <dialect-scope name="org.hibernate.dialect.MySQL5InnoDBDialect" />
+    </database-object>
+
+</hibernate-mapping>
+   

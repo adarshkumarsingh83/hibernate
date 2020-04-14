@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.adarsh.hibernate.bean.Employee" table="Employee" catalog="hibernate">
+
+        <id name="empId" type="java.lang.Integer">
+            <column name="Emp_Id" />
+            <generator class="identity" />
+        </id>
+        <property name="empName" type="string">
+            <column name="Emp_Name" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="empEmail" type="string">
+            <column name="Emp_Email" length="20" not-null="true" unique="true" />
+        </property>
+        <set name="employeeProject" table="employee_project" inverse="true"
+             lazy="true" fetch="select" cascade="all"  >
+            <key>
+                <column name="employee" not-null="true" />
+            </key>
+            <one-to-many class="com.adarsh.hibernate.bean.EmployeeProject" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.adarsh.domain.Employee" table="Employee" catalog="myDatabase">
+        <id name="empId" type="java.lang.Integer">
+            <column name="Emp_Id" />
+            <generator class="increment" />
+        </id>
+        <property name="empName" type="string">
+            <column name="Emp_Name" length="10" not-null="true" />
+        </property>
+         <property name="empEmail" type="string">
+            <column name="Emp_Email" length="20" not-null="true"  />
+        </property>
+        <property name="empDept" type="string">
+            <column name="Emp_Dept" length="20" not-null="true"  />
+        </property>
+    </class>
+</hibernate-mapping>
