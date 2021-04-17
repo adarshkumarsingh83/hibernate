@@ -1,25 +1,16 @@
-package com.adarsh.main;
+package com.adarsh.service;
 
-import java.util.*;
-import java.text.SimpleDateFormat;
-
+import com.adarsh.entity.Person;
 import com.adarsh.factory.MySessionFactory;
-import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.adarsh.bean.*;
 
-public class ClientClass {
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-    public static void main(String[] args) {
-        try {
-            ClientClass.insertPerson();
-            displayPerson(new Integer[]{100, 101, 102, 103, 104});
-
-        } catch (Exception exceptionObject) {
-            System.out.println(exceptionObject.getMessage());
-        }
-    }
+public class PersonService {
 
     public static void insertPerson() {
         try {
@@ -85,4 +76,5 @@ public class ClientClass {
         }
         return dataOfBirthObject;
     }
+
 }
