@@ -1,4 +1,4 @@
-package com.adarsh.bean;
+package com.adarsh.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
