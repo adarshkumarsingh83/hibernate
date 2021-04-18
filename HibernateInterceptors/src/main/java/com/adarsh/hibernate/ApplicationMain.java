@@ -1,4 +1,4 @@
-package com.adarsh.hibernate.main;
+package com.adarsh.hibernate;
 
 import com.adarsh.hibernate.service.EmployeeService;
 import com.adarsh.hibernate.service.impl.EmployeeServiceImpl;

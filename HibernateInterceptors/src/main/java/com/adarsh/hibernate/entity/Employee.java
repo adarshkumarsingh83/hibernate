@@ -1,4 +1,4 @@
-package com.adarsh.hibernate.bean;
+package com.adarsh.hibernate.entity;
 
 /**
  * Created with IntelliJ IDEA.

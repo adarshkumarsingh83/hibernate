@@ -7,16 +7,18 @@ package com.adarsh.hibernate.interceptor;
  * Time: 2:02 PM
  * To change this template use File | Settings | File Templates.
  */
+
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Iterator;
 
-import com.adarsh.hibernate.bean.Employee;
+import com.adarsh.hibernate.entity.Employee;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.EmptyInterceptor;
-import org.hibernate.Transaction;
 import org.hibernate.type.Type;
 
+@Slf4j
 public class MyInterceptor extends EmptyInterceptor {
+
     private int updates;
     private int creates;
     private int loads;
@@ -36,12 +38,13 @@ public class MyInterceptor extends EmptyInterceptor {
                                 Object[] previousState,
                                 String[] propertyNames,
                                 Type[] types) {
-        if ( entity instanceof Employee ) {
-            System.out.println("Update Operation");
+        if (entity instanceof Employee) {
+            log.info("Update Operation");
             return true;
         }
         return false;
     }
+
     public boolean onLoad(Object entity,
                           Serializable id,
                           Object[] state,
@@ -50,24 +53,27 @@ public class MyInterceptor extends EmptyInterceptor {
         // do nothing
         return true;
     }
+
     // This method is called when Employee object gets created.
     public boolean onSave(Object entity,
                           Serializable id,
                           Object[] state,
                           String[] propertyNames,
                           Type[] types) {
-        if ( entity instanceof Employee) {
-            System.out.println("Create Operation");
+        if (entity instanceof Employee) {
+            log.info("Create Operation");
             return true;
         }
         return false;
     }
+
     //called before commit into database
     public void preFlush(Iterator iterator) {
-        System.out.println("preFlush");
+        log.info("preFlush");
     }
+
     //called after committed into database
     public void postFlush(Iterator iterator) {
-        System.out.println("postFlush");
+        log.info("postFlush");
     }
 }

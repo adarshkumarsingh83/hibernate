@@ -1,10 +1,9 @@
 package com.adarsh.hibernate.service.impl;
 
 import java.util.List;
-import java.util.Date;
 import java.util.Iterator;
 
-import com.adarsh.hibernate.bean.Employee;
+import com.adarsh.hibernate.entity.Employee;
 import com.adarsh.hibernate.factory.MySessionFactory;
 import com.adarsh.hibernate.interceptor.MyInterceptor;
 import com.adarsh.hibernate.service.EmployeeService;
@@ -12,7 +11,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,19 +19,19 @@ import org.hibernate.cfg.Configuration;
  * Time: 2:04 PM
  * To change this template use File | Settings | File Templates.
  */
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private static SessionFactory factory;
 
-    public EmployeeServiceImpl(){
-        factory=MySessionFactory.getSessionFactory();
+    public EmployeeServiceImpl() {
+        factory = MySessionFactory.getSessionFactory();
     }
-
 
 
     /* Method to CREATE an employee in the database */
     public Integer addEmployee(String fname, String lname, int salary) {
-        Session session = factory.openSession(new MyInterceptor());
+        Session session = factory.withOptions()
+                .interceptor(new MyInterceptor()).openSession();
         Transaction tx = null;
         Integer employeeID = null;
         try {
@@ -52,13 +50,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     /* Method to  READ all the employees */
     public void listEmployees() {
-        Session session = factory.openSession(new MyInterceptor());
+        Session session = factory.withOptions()
+                .interceptor(new MyInterceptor()).openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
             List employees = session.createQuery("FROM Employee").list();
             for (Iterator iterator =
-                         employees.iterator(); iterator.hasNext(); ) {
+                 employees.iterator(); iterator.hasNext(); ) {
                 Employee employee = (Employee) iterator.next();
                 System.out.print("First Name: " + employee.getFirstName());
                 System.out.print("  Last Name: " + employee.getLastName());
@@ -75,7 +74,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     /* Method to UPDATE salary for an employee */
     public void updateEmployee(Integer EmployeeID, int salary) {
-        Session session = factory.openSession(new MyInterceptor());
+        Session session = factory.withOptions()
+                .interceptor(new MyInterceptor()).openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -94,7 +94,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     /* Method to DELETE an employee from the records */
     public void deleteEmployee(Integer EmployeeID) {
-        Session session = factory.openSession(new MyInterceptor());
+        Session session = factory.withOptions()
+                .interceptor(new MyInterceptor()).openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
