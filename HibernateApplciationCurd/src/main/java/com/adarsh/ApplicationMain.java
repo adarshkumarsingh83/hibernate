@@ -1,4 +1,4 @@
-package com.adarsh.main;
+package com.adarsh;
 
 
 import com.adarsh.domain.Employee;

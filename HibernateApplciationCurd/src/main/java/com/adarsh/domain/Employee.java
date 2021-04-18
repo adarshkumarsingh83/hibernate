@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Employee")
-public class Employee implements Serializable{
+public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
