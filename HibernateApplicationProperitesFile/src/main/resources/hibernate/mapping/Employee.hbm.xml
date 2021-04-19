@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.adarsh.domain.Employee" table="Employee" catalog="myDatabase">
+    <class name="com.adarsh.entity.Employee" table="Employee" catalog="espark">
         <id name="empId" type="java.lang.Integer">
             <column name="Emp_Id" />
             <generator class="increment" />
