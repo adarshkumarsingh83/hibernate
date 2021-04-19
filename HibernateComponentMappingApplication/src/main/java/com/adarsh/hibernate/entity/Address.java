@@ -1,9 +1,6 @@
-package com.adarsh.hibernate.bean;
+package com.adarsh.hibernate.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * Created with IntelliJ IDEA.

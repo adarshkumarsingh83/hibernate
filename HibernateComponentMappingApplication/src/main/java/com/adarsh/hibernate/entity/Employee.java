@@ -1,11 +1,11 @@
-package com.adarsh.hibernate.bean;
+package com.adarsh.hibernate.entity;
 
-import javax.persistence.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.Serializable;
 
-import static java.lang.System.out;
-import static javax.persistence.GenerationType.IDENTITY;
 
+@Slf4j
 public class Employee implements Serializable, Cloneable {
 
 
@@ -18,11 +18,11 @@ public class Employee implements Serializable, Cloneable {
 
 
     static {
-        out.println("Static block of the employee");
+        log.info("Static block of the employee");
     }
 
     public Employee() {
-        out.println("Employee Constructor");
+        log.info("Employee Constructor");
     }
 
     public Employee(Integer empId, String empName, String empEmail, Address address) {
