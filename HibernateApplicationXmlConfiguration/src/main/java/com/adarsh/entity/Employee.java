@@ -1,4 +1,4 @@
-package com.adarsh.domain;
+package com.adarsh.entity;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author $LastChangedBy: adarsh $
  * @version $Revision: 1595 $, $Date:: 6/4/12 9:42 AM#$
  */
-public class Employee implements Serializable{
+public class Employee implements Serializable {
 
     private Integer empId;
     private String empName;
