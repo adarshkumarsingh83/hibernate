@@ -1,12 +1,12 @@
-package com.adarsh.bean;
+package com.adarsh.entity;
 
+import lombok.extern.slf4j.Slf4j;
 import java.io.Serializable;
 import java.sql.Date;
 
-import static java.lang.System.out;
 
+@Slf4j
 public class Employee implements Serializable, Cloneable {
-
 
     private static final long serialVersionUID = 1L;
     private Integer empNumber;
@@ -17,11 +17,11 @@ public class Employee implements Serializable, Cloneable {
     private Date dateOfBirth;
 
     static {
-        out.println("Static block of the employee");
+        log.info("Static block of the employee");
     }
 
     public Employee() {
-        out.println("Employee Constructor");
+        log.info("Employee Constructor");
     }
 
     public Integer getEmpNumber() {
@@ -83,6 +83,6 @@ public class Employee implements Serializable, Cloneable {
     }
 
     public void displayEmployee() {
-        out.println("\nEmployee Number :" + this.empNumber + "\nEmployee Name: " + this.empFirstName + " " + this.empMiddleName + " " + this.empLastName + " " + this.empCity + " " + this.dateOfBirth);
+        log.info("\nEmployee Number :" + this.empNumber + "\nEmployee Name: " + this.empFirstName + " " + this.empMiddleName + " " + this.empLastName + " " + this.empCity + " " + this.dateOfBirth);
     }
 }

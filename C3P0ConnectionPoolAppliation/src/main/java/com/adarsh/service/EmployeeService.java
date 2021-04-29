@@ -1,29 +1,30 @@
-package com.adarsh.main;
+package com.adarsh.service;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import com.adarsh.bean.*;
+import com.adarsh.entity.Employee;
 import com.adarsh.factory.MySessionFactory;
-import org.hibernate.cfg.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-public class ClientClass {
+@Slf4j
+public class EmployeeService {
 
-    public static void main(String[] args) throws Exception {
+    public static void insertEmployee() throws Exception {
         Session sessionObject = MySessionFactory.getSessionFactory().openSession();
         Transaction transactionObject = sessionObject.beginTransaction();
-        List<Employee> empList = ClientClass.getEmployee();
+        List<Employee> empList = EmployeeService.getEmployee();
 
         for (int i = 0; i < empList.size(); i++) {
-            sessionObject.saveOrUpdate(((Employee) empList.get(i)));
+            sessionObject.saveOrUpdate(empList.get(i));
         }
-
         transactionObject.commit();
         sessionObject.close();
-        ClientClass.displayEmployee();
     }
 
     public static List<Employee> getEmployee() throws Exception {
@@ -50,11 +51,10 @@ public class ClientClass {
     public static void displayEmployee() {
         Integer empNumber[] = {101, 102, 103, 104, 105};
         try {
-            Session sessionObject = new Configuration().configure("hibernate/configuration/hibernate-cfg.xml").buildSessionFactory().openSession();
+            Session sessionObject = MySessionFactory.getSessionFactory().openSession();
             for (int i = 0; i < 5; i++) {
-                Employee emp = (Employee) sessionObject.get(Employee.class, empNumber[i]);
+                Employee emp = sessionObject.get(Employee.class, empNumber[i]);
                 emp.displayEmployee();
-                emp = null;
             }
             sessionObject.close();
         } catch (Exception exceptionObject) {
@@ -71,7 +71,7 @@ public class ClientClass {
             Date utilDate = formatter.parse(dateOfBirth);
             dataOfBirthObject = new java.sql.Date(utilDate.getTime());
         } catch (Exception exceptionObject) {
-            System.out.println(exceptionObject.getMessage());
+            log.error(exceptionObject.getMessage());
         }
         return dataOfBirthObject;
     }
