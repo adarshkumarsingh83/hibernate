@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="com.sourceN.bean.Employee" table="Employee">
+  <class name="com.espark.adarsh.bean.Employee" table="Employee">
     <id name="empNumber" column="empNumber">
 	   <generator class="assigned"/>
 	</id>   
