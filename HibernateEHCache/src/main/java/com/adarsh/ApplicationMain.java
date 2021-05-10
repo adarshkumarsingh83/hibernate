@@ -1,4 +1,4 @@
-package com.adarsh.main;
+package com.adarsh;
 
 
 import java.util.*;
@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.text.SimpleDateFormat;
 
-public class ClientClass {
+public class ApplicationMain {
 
 					public static void main(String[] args)throws Exception{
 						insertEmployee();
