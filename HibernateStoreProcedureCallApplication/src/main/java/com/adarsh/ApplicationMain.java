@@ -1,7 +1,8 @@
-package com.adarsh.main;
+package com.adarsh;
 
 import com.adarsh.domain.Employee;
 import com.adarsh.persistence.HibernateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,16 +11,16 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class App {
+@Slf4j
+public class ApplicationMain {
 
-    private static final Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
 
     public static void main(String[] args) {
 
-        logger.info("Hibernate + MySQL");
+        log.info("Hibernate + MySQL");
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Employee employee = new Employee(101, "adarsh", "adarsh@kumar", "IT");
+        Employee employee = new Employee(101, "adarsh", "IT", "adarsh@"+System.nanoTime());
         session.save(employee);
         transaction.commit();
 
@@ -31,10 +32,8 @@ public class App {
         List result = query.list();
         for (int i = 0; i < result.size(); i++) {
             Employee emp = (Employee) result.get(i);
-            System.out.println(emp);
+            log.info("employee {}", emp);
         }
-
-
-        logger.info("method executed sucessfully ");
+        log.info("method executed successfully ");
     }
 }

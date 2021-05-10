@@ -7,5 +7,4 @@ BEGIN
 
 DELIMITER ;
 
-
 CALL getemployee(1);
