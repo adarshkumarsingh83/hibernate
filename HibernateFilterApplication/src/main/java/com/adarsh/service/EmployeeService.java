@@ -1,23 +1,20 @@
-package com.adarsh.main;
+package com.adarsh.service;
 
-
-import java.util.*;
-
-import com.adarsh.bean.*;
-import com.adarsh.factory.*;
+import com.adarsh.entity.Employee;
+import com.adarsh.factory.MySessionFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Filter;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-public class ClientClass {
-
-    public static void main(String[] args) throws Exception {
-        insertEmployee();
-        displayEmployee();
-    }
+@Slf4j
+public class EmployeeService {
 
     public static void insertEmployee() throws Exception {
         Session sessionObject = MySessionFactory.getSessionFactory().openSession();
@@ -57,14 +54,14 @@ public class ClientClass {
             Filter filter = sessionObject.enableFilter("empFilter");
             filter.setParameter("empNumber", new Integer(101));
             Query hqlQuery=sessionObject.createQuery("Select e from Employee as e");
-             List<Employee> employeeList=hqlQuery.list();
-             for(Employee employee:employeeList){
-                 employee.displayEmployee();
-             }
+            List<Employee> employeeList=hqlQuery.list();
+            for(Employee employee:employeeList){
+                employee.displayEmployee();
+            }
             sessionObject.disableFilter("empFilter");
             sessionObject.close();
         } catch (Exception exceptionObject) {
-            System.out.println(" => "+exceptionObject.getMessage());
+            log.error(" =>  {} ",exceptionObject.getMessage());
         }
     }
 
@@ -76,7 +73,7 @@ public class ClientClass {
             Date utilDate = formatter.parse(dateOfBirth);
             dataOfBirthObject = new java.sql.Date(utilDate.getTime());
         } catch (Exception exceptionObject) {
-            System.out.println(exceptionObject.getMessage());
+            log.error(exceptionObject.getMessage());
         }
         return dataOfBirthObject;
     }
