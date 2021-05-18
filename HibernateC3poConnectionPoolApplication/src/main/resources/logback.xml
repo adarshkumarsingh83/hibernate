@@ -10,13 +10,13 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>c:/mkyongapp.log</file>
+		<file>app.log</file>
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
 		</layout>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>c:/mkyongapp.%i.log.zip</FileNamePattern>
+			<FileNamePattern>app.%i.log.zip</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>10</MaxIndex>
 		</rollingPolicy>
