@@ -1,4 +1,4 @@
-package com.adarsh.domain;
+package com.adarsh.entity;
 
 public class Avatar implements java.io.Serializable {
 

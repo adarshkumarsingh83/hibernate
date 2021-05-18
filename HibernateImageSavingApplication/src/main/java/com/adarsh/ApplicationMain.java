@@ -1,7 +1,8 @@
-package com.adarsh.main;
+package com.adarsh;
 
-import com.adarsh.domain.Avatar;
+import com.adarsh.entity.Avatar;
 import com.adarsh.persistence.HibernateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
@@ -11,18 +12,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class App {
+@Slf4j
+public class ApplicationMain {
 
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
-        logger.info("Hibernate save image into database");
+        log.info("Hibernate save image into database");
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
 
         //save image into database
-        File file = new File("c:\\sourcen.jpg");
+        File file = new File("image/source-dir/image.jpg");
         byte[] bFile = new byte[(int) file.length()];
 
         try {
@@ -31,14 +32,13 @@ public class App {
             fileInputStream.read(bFile);
             fileInputStream.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("{}", e.getMessage());
         }
 
         Avatar avatar = new Avatar();
         avatar.setImage(bFile);
         session.save(avatar);
         transaction.commit();
-
 
 
         Session session1 = HibernateUtil.getSessionFactory().openSession();
@@ -48,7 +48,7 @@ public class App {
         byte[] bAvatar = avatar2.getImage();
 
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("e:\\sourcen.jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream("image/destination-dir/image" + System.currentTimeMillis() + ".jpg");
             fileOutputStream.write(bAvatar);
             fileOutputStream.close();
         } catch (Exception e) {
@@ -56,6 +56,6 @@ public class App {
         }
 
         transaction1.commit();
-        logger.info("execution completed");
+        log.info("execution completed");
     }
 }
