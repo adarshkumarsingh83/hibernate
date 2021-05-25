@@ -1,15 +1,16 @@
-package com.adarsh.main;
+package com.adarsh;
 
 import com.adarsh.factory.MySessionFactory;
-import com.adarsh.user.DBUser;
+import com.adarsh.entity.DBUser;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 
 import java.util.Date;
 
-public class Application {
+@Slf4j
+public class ApplicationMain {
+
     public static void main(String[] args) {
-
-
         Session session = MySessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
         DBUser user = new DBUser();
@@ -19,7 +20,12 @@ public class Application {
         user.setCreatedBy("system");
         user.setCreatedDate(new Date());
 
-        session.save(user);
+        Integer id = (Integer) session.save(user);
         session.getTransaction().commit();
+        session.close();
+        session = MySessionFactory.getSessionFactory().openSession();
+        user = session.get(DBUser.class, id);
+        log.info("User {}", user);
+        session.close();
     }
 }

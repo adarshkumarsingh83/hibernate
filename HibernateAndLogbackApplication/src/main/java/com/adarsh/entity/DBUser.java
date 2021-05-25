@@ -1,4 +1,4 @@
-package com.adarsh.user;
+package com.adarsh.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -66,4 +66,13 @@ public class DBUser implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
+	@Override
+	public String toString() {
+		return "DBUser{" +
+				"userId=" + userId +
+				", username='" + username + '\'' +
+				", createdBy='" + createdBy + '\'' +
+				", createdDate=" + createdDate +
+				'}';
+	}
 }
